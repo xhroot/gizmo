@@ -11,15 +11,15 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/NYTimes/gizmo/config"
-	"github.com/NYTimes/gizmo/pubsub"
+	"github.com/xhroot/gizmo/config"
+	"github.com/xhroot/gizmo/pubsub"
 	"github.com/NYTimes/logrotate"
 	"github.com/Sirupsen/logrus"
 	"github.com/cyberdelia/go-metrics-graphite"
 	"github.com/golang/protobuf/proto"
 	"github.com/rcrowley/go-metrics"
 
-	"github.com/NYTimes/gizmo/examples/nyt"
+	"github.com/xhroot/gizmo/examples/nyt"
 )
 
 var (

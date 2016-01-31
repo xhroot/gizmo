@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/NYTimes/gizmo/server"
+	"github.com/xhroot/gizmo/server"
 	"github.com/rcrowley/go-metrics"
 )
 

@@ -11,8 +11,8 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/grpclog"
 
-	"github.com/NYTimes/gizmo/examples/servers/rpc/service"
-	"github.com/NYTimes/gizmo/server"
+	"github.com/xhroot/gizmo/examples/servers/rpc/service"
+	"github.com/xhroot/gizmo/server"
 )
 
 var (

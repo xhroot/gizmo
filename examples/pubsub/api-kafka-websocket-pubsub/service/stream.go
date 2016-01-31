@@ -8,9 +8,9 @@ import (
 
 	"github.com/gorilla/websocket"
 
-	"github.com/NYTimes/gizmo/pubsub"
-	"github.com/NYTimes/gizmo/server"
-	"github.com/NYTimes/gizmo/web"
+	"github.com/xhroot/gizmo/pubsub"
+	"github.com/xhroot/gizmo/server"
+	"github.com/xhroot/gizmo/web"
 )
 
 var (

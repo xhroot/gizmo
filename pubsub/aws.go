@@ -14,7 +14,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/sqs/sqsiface"
 	"github.com/golang/protobuf/proto"
 
-	"github.com/NYTimes/gizmo/config"
+	"github.com/xhroot/gizmo/config"
 )
 
 // SNSPublisher will accept AWS credentials and an SNS topic name

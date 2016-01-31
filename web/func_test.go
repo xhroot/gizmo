@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/NYTimes/gizmo/web"
+	"github.com/xhroot/gizmo/web"
 	"github.com/gorilla/mux"
 )
 

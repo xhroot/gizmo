@@ -3,9 +3,9 @@ package service
 import (
 	"net/http"
 
-	"github.com/NYTimes/gizmo/examples/nyt"
-	"github.com/NYTimes/gizmo/server"
-	"github.com/NYTimes/gizmo/web"
+	"github.com/xhroot/gizmo/examples/nyt"
+	"github.com/xhroot/gizmo/server"
+	"github.com/xhroot/gizmo/web"
 	"github.com/gorilla/mux"
 	"golang.org/x/net/context"
 )

@@ -21,8 +21,8 @@ import (
 	"github.com/nu7hatch/gouuid"
 	"github.com/rcrowley/go-metrics"
 
-	"github.com/NYTimes/gizmo/config"
-	"github.com/NYTimes/gizmo/web"
+	"github.com/xhroot/gizmo/config"
+	"github.com/xhroot/gizmo/web"
 	"github.com/NYTimes/logrotate"
 )
 

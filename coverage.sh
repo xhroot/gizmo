@@ -11,7 +11,7 @@ generate_cover_data() {
     mkdir "$workdir"
 
     for pkg in "$@"; do
-        if [ $pkg == "github.com/NYTimes/gizmo/server" -o $pkg == "github.com/NYTimes/gizmo/config" -o $pkg == "github.com/NYTimes/gizmo/web" -o $pkg == "github.com/NYTimes/gizmo/pubsub" ]
+        if [ $pkg == "github.com/xhroot/gizmo/server" -o $pkg == "github.com/xhroot/gizmo/config" -o $pkg == "github.com/xhroot/gizmo/web" -o $pkg == "github.com/xhroot/gizmo/pubsub" ]
             then
                 f="$workdir/$(echo $pkg | tr / -)"
                 go test -covermode="$mode" -coverprofile="$f.cover" "$pkg"

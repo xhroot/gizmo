@@ -1,25 +1,25 @@
 package main
 
 import (
-	"github.com/NYTimes/gizmo/examples/pubsub/api-sns-pub/service"
+	"github.com/xhroot/gizmo/examples/pubsub/api-sns-pub/service"
 
-	"github.com/NYTimes/gizmo/config"
-	"github.com/NYTimes/gizmo/server"
+	"github.com/xhroot/gizmo/config"
+	svr "github.com/xhroot/gizmo/server"
 )
 
 func main() {
 	// showing 1 way of managing gizmo/config: importing from a local file
 	cfg := config.NewConfig("./config.json")
 
-	server.Init("nyt-json-pub-proxy", cfg.Server)
+	svr.Init("nyt-json-pub-proxy", cfg.Server)
 
-	err := server.Register(service.NewJSONPubService(cfg))
+	err := svr.Register(service.NewJSONPubService(cfg))
 	if err != nil {
-		server.Log.Fatal("unable to register service: ", err)
+		svr.Log.Fatal("unable to register service: ", err)
 	}
 
-	err = server.Run()
+	err = svr.Run()
 	if err != nil {
-		server.Log.Fatal("server encountered a fatal error: ", err)
+		svr.Log.Fatal("server encountered a fatal error: ", err)
 	}
 }

@@ -1,6 +1,6 @@
 package main
 
-import "github.com/NYTimes/gizmo/examples/pubsub/sqs-sub/service"
+import "github.com/xhroot/gizmo/examples/pubsub/sqs-sub/service"
 
 func main() {
 	service.Init()

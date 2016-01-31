@@ -3,7 +3,7 @@ package service
 import (
 	"net/http"
 
-	"github.com/NYTimes/gizmo/server"
+	"github.com/xhroot/gizmo/server"
 	"github.com/gorilla/context"
 )
 

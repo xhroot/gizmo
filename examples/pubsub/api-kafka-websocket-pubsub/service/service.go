@@ -3,8 +3,8 @@ package service
 import (
 	"net/http"
 
-	"github.com/NYTimes/gizmo/config"
-	"github.com/NYTimes/gizmo/server"
+	"github.com/xhroot/gizmo/config"
+	"github.com/xhroot/gizmo/server"
 )
 
 // StreamService offers three endpoints: one to create a new topic in

@@ -8,7 +8,7 @@ import (
 	"runtime/debug"
 	"time"
 
-	"github.com/NYTimes/gizmo/config"
+	"github.com/xhroot/gizmo/config"
 	"github.com/NYTimes/logrotate"
 
 	"github.com/Sirupsen/logrus"

@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"text/template"
 
-	"github.com/NYTimes/gizmo/examples/nyt"
-	"github.com/NYTimes/gizmo/server"
+	"github.com/xhroot/gizmo/examples/nyt"
+	"github.com/xhroot/gizmo/server"
 	"github.com/Sirupsen/logrus"
 )
 

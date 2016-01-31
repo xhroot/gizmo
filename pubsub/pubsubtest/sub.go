@@ -3,7 +3,7 @@ package pubsubtest
 import (
 	"encoding/json"
 
-	"github.com/NYTimes/gizmo/pubsub"
+	"github.com/xhroot/gizmo/pubsub"
 	"github.com/golang/protobuf/proto"
 )
 

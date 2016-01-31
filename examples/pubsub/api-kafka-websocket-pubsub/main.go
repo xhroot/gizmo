@@ -3,11 +3,11 @@ package main
 import (
 	"flag"
 
-	"github.com/NYTimes/gizmo/config"
-	"github.com/NYTimes/gizmo/pubsub"
-	"github.com/NYTimes/gizmo/server"
+	"github.com/xhroot/gizmo/config"
+	"github.com/xhroot/gizmo/pubsub"
+	"github.com/xhroot/gizmo/server"
 
-	"github.com/NYTimes/gizmo/examples/pubsub/api-kafka-websocket-pubsub/service"
+	"github.com/xhroot/gizmo/examples/pubsub/api-kafka-websocket-pubsub/service"
 )
 
 func main() {

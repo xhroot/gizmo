@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/NYTimes/gizmo/config"
-	"github.com/NYTimes/gizmo/examples/nyt"
-	"github.com/NYTimes/gizmo/pubsub"
+	"github.com/xhroot/gizmo/config"
+	"github.com/xhroot/gizmo/examples/nyt"
+	"github.com/xhroot/gizmo/pubsub"
 	"github.com/Sirupsen/logrus"
 )
 

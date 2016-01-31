@@ -6,7 +6,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/NYTimes/gizmo/config"
+	"github.com/xhroot/gizmo/config"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/service/sqs"
 	"github.com/golang/protobuf/proto"
