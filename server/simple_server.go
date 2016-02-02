@@ -9,10 +9,10 @@ import (
 	"runtime/debug"
 	"strings"
 
-	"github.com/xhroot/gizmo/config"
 	"github.com/gorilla/context"
 	"github.com/gorilla/mux"
 	"github.com/rcrowley/go-metrics"
+	"github.com/xhroot/gizmo/config"
 	netContext "golang.org/x/net/context"
 )
 
@@ -178,9 +178,10 @@ func (s *SimpleServer) Register(svcI Service) error {
 	sr := s.mux.PathPrefix(prefix).Subrouter()
 
 	var (
-		js JSONService
-		ss SimpleService
-		cs ContextService
+		js  JSONService
+		jcs JconService
+		ss  SimpleService
+		cs  ContextService
 	)
 
 	switch svc := svcI.(type) {
@@ -191,6 +192,8 @@ func (s *SimpleServer) Register(svcI Service) error {
 		ss = svc
 	case JSONService:
 		js = svc
+	case JconService:
+		jcs = svc
 	case ContextService:
 		cs = svc
 	default:
@@ -234,6 +237,21 @@ func (s *SimpleServer) Register(svcI Service) error {
 				// set the function handle and register it to metrics
 				sr.Handle(path, Timed(CountedByStatusXX(
 					js.Middleware(JSONToHTTP(js.JSONMiddleware(ep))),
+					endpointName+".STATUS-COUNT", metrics.DefaultRegistry),
+					endpointName+".DURATION", metrics.DefaultRegistry),
+				).Methods(method)
+			}
+		}
+	}
+
+	if jcs != nil {
+		// register all JSON endpoints with our wrapper
+		for path, epMethods := range jcs.JconEndpoints() {
+			for method, ep := range epMethods {
+				endpointName := metricName(prefix, path, method)
+				// set the function handle and register it to metrics
+				sr.Handle(path, Timed(CountedByStatusXX(
+					jcs.Middleware(JconToHTTP(s.ctx, jcs.JconMiddleware(ep))),
 					endpointName+".STATUS-COUNT", metrics.DefaultRegistry),
 					endpointName+".DURATION", metrics.DefaultRegistry),
 				).Methods(method)
@@ -307,14 +325,14 @@ func GetIP(r *http.Request) (string, error) {
 }
 
 // ContextKey used to create context keys.
-type ContextKey int
+type contextKey int
 
 const (
 	// UserIPKey is key to set/retrieve value from context.
-	UserIPKey ContextKey = 0
+	UserIPKey contextKey = 0
 
 	// UserForwardForIPKey is key to set/retrieve value from context.
-	UserForwardForIPKey ContextKey = 1
+	UserForwardForIPKey contextKey = 1
 )
 
 // ContextWithUserIP returns new context with user ip address.

@@ -44,6 +44,50 @@ func JSONToHTTP(ep JSONEndpoint) http.Handler {
 	})
 }
 
+// JconToHTTP is the middleware func to convert a JconEndpoint to
+// an http.HandlerFunc.
+func JconToHTTP(ctx context.Context, ep JconEndpoint) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.Body != nil {
+			defer func() {
+				if err := r.Body.Close(); err != nil {
+					Log.Warn("unable to close request body: ", err)
+				}
+			}()
+		}
+		// it's JSON, so always set that content type
+		w.Header().Set("Content-Type", jsonContentType)
+		// prepare to grab the response from the ep
+		var b bytes.Buffer
+		encoder := json.NewEncoder(&b)
+
+		var cancel context.CancelFunc
+
+		ctx, cancel = context.WithCancel(ctx)
+
+		defer cancel()
+
+		ctx = ContextWithUserIP(ctx, r)
+		ctx = ContextWithForwardForIP(ctx, r)
+
+		// call the func and return err or not
+		code, res, err := ep(ctx, r)
+		w.WriteHeader(code)
+		if err != nil {
+			res = err
+		}
+
+		err = encoder.Encode(res)
+		if err != nil {
+			LogWithFields(r).Error("unable to JSON encode response: ", err)
+		}
+
+		if _, err := w.Write(b.Bytes()); err != nil {
+			LogWithFields(r).Warn("unable to write response: ", err)
+		}
+	})
+}
+
 // ContextToHTTP is a middleware func to convert a ContextHandler an http.Handler.
 func ContextToHTTP(ctx context.Context, ep ContextHandler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {

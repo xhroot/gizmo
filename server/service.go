@@ -36,6 +36,17 @@ type JSONService interface {
 	JSONMiddleware(JSONEndpoint) JSONEndpoint
 }
 
+type JconService interface {
+	Service
+
+	// route - method - func
+	JconEndpoints() map[string]map[string]JconEndpoint
+	JconMiddleware(JconEndpoint) JconEndpoint
+}
+
+// JconEndpoint is the JconService equivalent to SimpleService's http.HandlerFunc.
+type JconEndpoint func(context.Context, *http.Request) (int, interface{}, error)
+
 // MixedService is an interface defining service that
 // offer JSONEndpoints and simple http.HandlerFunc endpoints.
 type MixedService interface {
